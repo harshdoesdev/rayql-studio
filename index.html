@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Editor with WASM Parser</title>
+<style>
+  /* Dark mode styling */
+  body {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    font-family: monospace;
+  }
+  #editor {
+    width: 100%;
+    height: 300px;
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    resize: none;
+  }
+  #output {
+    margin-top: 10px;
+    border: 1px solid #555;
+    padding: 10px;
+    background-color: #333;
+    white-space: pre-wrap;
+  }
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<!-- Code Editor -->
+<code-editor></code-editor>
+
+<!-- Output Display -->
+<div id="output"></div>
+
+<script type="module" src="./app.js"></script>
+
+</body>
+</html>
