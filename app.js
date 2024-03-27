@@ -1,8 +1,16 @@
 import init, { to_sql } from './rayql_wasm.js';
 
+// Initialize the RayQL WASM module
 await init();
 
-const exampleCode = `# Enum for user types
+// Get elements
+const schemaTextarea = document.getElementById('schema');
+const sqlOutputPre = document.getElementById('sql-output');
+const errorMessageDiv = document.getElementById('error-message');
+const copyButton = document.querySelector('.rayql-editor-copy-btn');
+
+// Demo code
+const demoCode = `# Enum for user types
 
 enum user_type {
     admin
@@ -30,68 +38,52 @@ model post {
     created_at: timestamp default(now()),
 }`;
 
-class CodeEditor extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-        <style>
-          :host {
-            display: block;
-            width: 100%;
-          }
-          #editor {
-            width: 100%;
-            height: 300px;
-            background-color: #2e2e2e;
-            color: #e0e0e0;
-            border: none;
-            padding: 10px;
-            box-sizing: border-box;
-            font-family: inherit;
-            resize: none;
-          }
-        </style>
-        <textarea id="editor"></textarea>
-      `;
-        this.editor = this.shadowRoot.querySelector('#editor');
-        this.output = document.getElementById('output');
-        this.editor.value = exampleCode;
-        this.updateEditorUI(this.editor.value);
-        this.editor.addEventListener('input', () => this.updateEditorUI(this.editor.value));
-
-        // Add event listener for tab keydown
-        this.editor.addEventListener('keydown', (event) => {
-            if (event.key === 'Tab') {
-                event.preventDefault();
-                const { selectionStart, selectionEnd } = this.editor;
-                const start = this.editor.value.substring(0, selectionStart);
-                const end = this.editor.value.substring(selectionEnd);
-                this.editor.value = `${start}    ${end}`; // Four spaces for tab
-                this.editor.setSelectionRange(selectionStart + 4, selectionStart + 4);
-            }
-        });
+// Function to handle tab insertion
+schemaTextarea.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+        event.preventDefault();
+        const { selectionStart, selectionEnd } = schemaTextarea;
+        const start = schemaTextarea.value.substring(0, selectionStart);
+        const end = schemaTextarea.value.substring(selectionEnd);
+        schemaTextarea.value = `${start}    ${end}`; // Four spaces for tab
+        schemaTextarea.setSelectionRange(selectionStart + 4, selectionStart + 4);
+        updateOutput(); // Update output after tab insertion
     }
+});
 
-    updateEditorUI(code) {
-        try {
-            const sql = to_sql(code);
-            this.output.textContent = sql;
-            this.output.classList.remove('error');
-        } catch (error) {
-            this.output.textContent = error;
-            this.output.classList.add('error');
-        }
-    }
-
-    get value() {
-        return this.editor.value;
-    }
-
-    set value(newValue) {
-        this.editor.value = newValue;
-        this.updateEditorUI(newValue);
+// Function to update SQL output and error message
+function updateOutput() {
+    const schemaCode = schemaTextarea.value;
+    try {
+        const sql = to_sql(schemaCode);
+        sqlOutputPre.textContent = sql;
+        errorMessageDiv.textContent = ''; // Clear error message if successful
+    } catch (error) {
+        sqlOutputPre.textContent = ''; // Clear SQL output if error
+        errorMessageDiv.textContent = error;
     }
 }
 
-customElements.define('code-editor', CodeEditor);
+// Function to copy SQL output to clipboard
+function copyToClipboard() {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(sqlOutputPre);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    // Display 'Copied' message
+    copyButton.textContent = 'Copied';
+    setTimeout(() => {
+        copyButton.textContent = 'Copy';
+    }, 1500); // Reset button text after 1.5 seconds
+}
+
+// Initial update with demo code when page loads
+schemaTextarea.value = demoCode;
+updateOutput();
+
+// Add event listeners for input changes
+schemaTextarea.addEventListener('input', updateOutput);
+copyButton.addEventListener('click', copyToClipboard);

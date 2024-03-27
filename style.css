@@ -1,0 +1,119 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+  background-color: #1a202c; /* bg-background */
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.rayql-editor-wrapper {
+  max-width: 48rem; /* max-w-3xl */
+  margin: 0 auto; /* mx-auto */
+}
+
+.rayql-editor-header {
+  margin-bottom: 1.5rem; /* gap-6 */
+}
+
+.rayql-editor-header a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.rayql-editor-header a:hover {
+  text-decoration: underline;
+}
+
+.rayql-editor-footer {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.rayql-editor-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+}
+
+.rayql-editor-subtitle {
+  color: #718096; /* text-gray-500 */
+}
+
+.rayql-editor-description {
+  color: #718096; /* text-gray-500 */
+}
+
+.rayql-editor-content {
+  display: grid; /* grid */
+  gap: 1.5rem; /* gap-4 */
+}
+
+.rayql-editor-input,
+.rayql-editor-output {
+  display: grid; /* grid */
+  gap: 1rem; /* gap-2 */
+}
+
+.rayql-editor-label {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+}
+
+.rayql-editor-textarea {
+  width: 100%; /* w-full */
+  min-height: 50vh;
+  padding: 0.75rem; /* px-3 py-2 */
+  border: 1px solid #e2e8f0; /* border border-input */
+  border-radius: 0.375rem; /* rounded-md */
+  background-color: #1a202c; /* bg-background */
+  color: #a0aec0; /* text-muted-foreground */
+  resize: vertical;
+  font-family: monospace; /* font-mono */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.rayql-editor-code {
+  position: relative; /* relative */
+}
+
+.rayql-editor-pre {
+  padding: 1rem; /* p-4 */
+  border: 1px solid #e2e8f0; /* border */
+  border-radius: 0.375rem; /* rounded-lg */
+  background-color: #2d3748; /* bg-background */
+  color: #a0aec0; /* text-muted-foreground */
+  font-family: monospace; /* font-mono */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.rayql-editor-copy-btn {
+  position: absolute; /* absolute */
+  top: 0.5rem; /* top-2 */
+  right: 0.5rem; /* right-2 */
+  padding: 0.25rem 0.5rem; /* px-2 py-1 */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 600; /* font-semibold */
+  color: #2d3748; /* text-gray-800 */
+  background-color: #cbd5e0; /* bg-gray-200 */
+  border: none;
+  border-radius: 0.375rem; /* rounded */
+  transition: background-color 0.3s ease;
+}
+
+.rayql-editor-copy-btn:hover {
+  background-color: #4a5568; /* dark:bg-gray-800 */
+}
+
+.rayql-editor-error-message {
+  padding: 1rem; /* p-4 */
+  border: 1px solid #e2e8f0; /* border */
+  border-radius: 0.375rem; /* rounded-lg */
+}
