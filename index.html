@@ -1,44 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RayQL Editor</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="rayql-editor-wrapper">
-  <div class="rayql-editor-header">
-    <h1 class="rayql-editor-title">RayQL <span class="rayql-editor-subtitle">Editor</span></h1>
-    <a href="https://github.com/harshdoesdev/rayql" target="_blank">GitHub</a>
-    <p class="rayql-editor-description">Input your RayQL schema code and view the generated SQL output.</p>
-  </div>
-  <div class="rayql-editor-content">
-    <div class="rayql-editor-input">
-      <label class="rayql-editor-label" for="schema">RayQL Schema</label>
-      <textarea class="rayql-editor-textarea" id="schema" placeholder="Input your RayQL schema code here."></textarea>
-    </div>
-    <div class="rayql-editor-output">
-      <div class="rayql-editor-result">
-        <label class="rayql-editor-label">SQL Output</label>
-        <div class="rayql-editor-code">
-          <pre class="rayql-editor-pre" id="sql-output"></pre>
-          <button class="rayql-editor-copy-btn">Copy</button>
-        </div>
-      </div>
-      <div class="rayql-editor-error">
-        <label class="rayql-editor-label">Error</label>
-        <div class="rayql-editor-error-message" id="error-message"></div>
-      </div>
-    </div>
-  </div>
-  <div class="rayql-editor-footer">
-    &copy; Harsh Singh
-  </div>  
-</div>
-
-<script type="module" src="./app.js"></script>
-
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RayQL Studio</title>
+      <script type="module" crossorigin src="/assets/index-ZIGhxhGh.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index-taU1lpkD.css">
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
 </html>
